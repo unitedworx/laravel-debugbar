@@ -24,12 +24,12 @@ class LogsCollector extends MessagesCollector
      */
     public function getLogsFile()
     {
-        //Default log location (single file)
-        $path = storage_path() . '/logs/laravel.log';
+        // default daily rotating logs (Laravel 5.0)
+        $path = storage_path() . '/logs/laravel-' . date('Y-m-d') . '.log';
 
-        //Rotating logs (Laravel 4.0)
+        // single file logs
         if (!file_exists($path)) {
-            $path = storage_path() . '/logs/log-' . php_sapi_name() . '-' . date('Y-m-d') . '.txt';
+            $path = storage_path() . '/logs/laravel.log';
         }
 
         return $path;
